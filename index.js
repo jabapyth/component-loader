@@ -21,7 +21,7 @@ module.exports = function(parent, options){
   options = options || {};
   var attr = options.attr || 'data-comp'
     , comps = query.all('[' + attr + ']', parent)
-    , onerror = options.onerror || console.error
+    , onerror = options.onerror || function(){ console.error.apply(console, arguments); }
     , require_ = options.require || require
     , componentName
     , component

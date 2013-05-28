@@ -100,5 +100,18 @@ describe('component-loader', function(){
       expect(onerror.firstCall.args[1].message).to.match(/^Failed to require/);
     });
   });
+  it('should call console.error correctly', function(){
+    if (!window.console){
+      var c = function(){
+        var that = this;
+        this.error = function(){
+          if (that !== this)
+            throw new Error('console.error unbound!');
+        };
+      };
+      window.console = new c();
+    }
+    componentLoader(one);
+  });
 });
 
