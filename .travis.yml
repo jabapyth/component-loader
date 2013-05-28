@@ -5,5 +5,5 @@ node_js:
 before_script:
   - npm install -g karma
   - npm install -g component
-script: make test
+script: make test-ci
 
