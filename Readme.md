@@ -14,17 +14,14 @@
 
 ## API
 
-### componentLoader(parent, options)
+### componentLoader(require, parent, options)
 
-Options look like:
-
+- require: function for loading the components.
 - parent: the scope in which to query. Defaults to document
 - options:
 
   -  onerror: function to call with error messages. defaults to `console.error`
   -  attr:    the attribute to look for. Defaults to `data-comp`
-  -  require: function for loading the components. defaults to the require
-              included in the component build
 
    
 

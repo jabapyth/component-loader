@@ -40,14 +40,14 @@ describe('component-loader', function(){
     three.parentNode.removeChild(three);
   });
   it('should find all elements', function(){
-    componentLoader(null, {require: mockRequire});
+    componentLoader(mockRequire);
     expect(mockRequire.callCount).to.eql(3);
     expect(one_comp.called).to.be.true;
     expect(two_comp.called).to.be.true;
     expect(three_comp.called).to.be.true;
   });
   it('should respect boundries', function(){
-    componentLoader(one, {require: mockRequire});
+    componentLoader(mockRequire, one);
     expect(mockRequire.callCount).to.eql(1);
     expect(mockRequire.firstCall.args).to.eql(['twos']);
     expect(one_comp.called).to.be.false;
@@ -66,7 +66,7 @@ describe('component-loader', function(){
       four.parentNode.removeChild(four);
     });
     it('should call onerror', function(){
-      componentLoader(null, {require: mockRequire, onerror: onerror});
+      componentLoader(mockRequire, null, {onerror: onerror});
       expect(onerror.callCount).to.eql(1);
     });
   });
@@ -77,7 +77,7 @@ describe('component-loader', function(){
       one.setAttribute('data-config', '{{{');
     });
     it('should call onerror', function(){
-      componentLoader(null, {require: mockRequire, onerror: onerror});
+      componentLoader(mockRequire, null, {onerror: onerror});
       expect(onerror.callCount).to.eql(1);
     });
   });
@@ -88,16 +88,8 @@ describe('component-loader', function(){
       one_comp.returns(false);
     });
     it('should call onerror', function(){
-      componentLoader(null, {require: mockRequire, onerror: onerror});
+      componentLoader(mockRequire, null, {onerror: onerror});
       expect(onerror.callCount).to.eql(1);
-    });
-  });
-  describe('without a shadowed require', function(){
-    it('should throw the proper error', function(){
-      var onerror = sinon.spy();
-      componentLoader(one, {onerror: onerror});
-      expect(onerror.callCount).to.eql(1);
-      expect(onerror.firstCall.args[1].message).to.match(/^Failed to require/);
     });
   });
   it('should call console.error correctly', function(){
@@ -111,7 +103,7 @@ describe('component-loader', function(){
       };
       window.console = new c();
     }
-    componentLoader(one);
+    componentLoader(require, one);
   });
 });
 
