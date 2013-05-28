@@ -1,13 +1,30 @@
 
-# control-loader
+[![Build Status](https://travis-ci.org/jabapyth/component-loader.png?branch=master)](https://travis-ci.org/jabapyth/component-loader)
 
-  Load components in a control-like way, with the data-comp attr on dom nodes
+# component-loader
+
+ Find all the nodes with [attr] set, and try to load and intialize their
+ components. Nodes that are found are parsed by data-control-parser, and the
+ associated component is `require`d and then called with (node, config) as
+ the arguments.
 
 ## Installation
 
     $ component install fs-components/control-loader
 
 ## API
+
+### componentLoader(parent, options)
+
+Options look like:
+
+- parent: the scope in which to query. Defaults to document
+- options:
+
+  -  onerror: function to call with error messages. defaults to `console.error`
+  -  attr:    the attribute to look for. Defaults to `data-comp`
+  -  require: function for loading the components. defaults to the require
+              included in the component build
 
    
 
