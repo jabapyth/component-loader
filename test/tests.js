@@ -92,5 +92,13 @@ describe('component-loader', function(){
       expect(onerror.callCount).to.eql(1);
     });
   });
+  describe('without a shadowed require', function(){
+    it('should throw the proper error', function(){
+      var onerror = sinon.spy();
+      componentLoader(one, {onerror: onerror});
+      expect(onerror.callCount).to.eql(1);
+      expect(onerror.firstCall.args[1].message).to.match(/^Failed to require/);
+    });
+  });
 });
 

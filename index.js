@@ -22,16 +22,16 @@ module.exports = function(parent, options){
   var attr = options.attr || 'data-comp'
     , comps = query.all('[' + attr + ']', parent)
     , onerror = options.onerror || console.error
-    , require = options.require || require
+    , require_ = options.require || require
     , componentName
     , component
     , cfg;
   for (var i=0; i<comps.length; i++) {
     componentName = comps[i].getAttribute(attr);
     try {
-      component = require(componentName);
+      component = require_(componentName);
     } catch (ex) {
-      onerror("Failed to load component definition '" + componentName + "': " + ex);
+      onerror("Failed to load component definition '" + componentName + "': ", ex);
       continue;
     }
     cfg = dataControlParser(comps[i], attr);
