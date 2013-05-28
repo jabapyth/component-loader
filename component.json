@@ -1,0 +1,17 @@
+{
+  "name": "component-loader",
+  "repo": "fs-components/component-loader",
+  "description": "Load components in a control-like way, with the data-comp attr on dom nodes",
+  "version": "0.0.1",
+  "keywords": [],
+  "dependencies": {
+    "fs-components/data-control-parser": "*",
+    "component/query": "*",
+    "jamischarles/query-qwery": "*"
+  },
+  "development": {},
+  "main": "index.js",
+  "scripts": [
+    "index.js"
+  ]
+}
